@@ -20,7 +20,7 @@ jobs:
         include:
           - path: ./target/release/rust_todo_server
           - path: ./target/release/rust_todo_server.exe
-            os: windows-latest
+            os: windows
     runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v3
