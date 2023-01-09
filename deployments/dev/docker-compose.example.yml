@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  server-app:
+    build:
+      context: ../..
+      dockerfile: deployments/dev/Dockerfile
+    restart: unless-stopped
+    environment:
+      HOST: '0.0.0.0'
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../../:/app
+    working_dir: /app
+    command: tail -f /dev/null
+    networks:
+      - internal
+
+networks:
+  internal:
+    external: true
