@@ -14,10 +14,12 @@ jobs:
   build:
     strategy:
       matrix:
-        os:
-          - ubuntu-latest
-          - macos-latest
-          - windows-latest
+        - os: ubuntu-latest
+          path: ./target/release/rust_todo_server
+        - os: macos-latest
+          path: ./target/release/rust_todo_server
+        - os: windows-latest
+          path: ./target/release/rust_todo_server.exe
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -25,3 +27,7 @@ jobs:
         with:
           command: build
           args: --release --all-features
+      - uses: actions/upload-artifact@master
+        with:
+          name: rust_todo_server-${{ matrix.os }}
+          path: ${{ matrix.path }}
