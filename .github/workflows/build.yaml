@@ -12,14 +12,17 @@ on: push
 
 jobs:
   build:
+    name: Build for ${{ matrix.os }}
     strategy:
       matrix:
-        - os: ubuntu-latest
-          path: ./target/release/rust_todo_server
-        - os: macos-latest
-          path: ./target/release/rust_todo_server
-        - os: windows-latest
-          path: ./target/release/rust_todo_server.exe
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+        include:
+          - path: ./target/release/rust_todo_server
+          - path: ./target/release/rust_todo_server.exe
+            os: windows-latest
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
