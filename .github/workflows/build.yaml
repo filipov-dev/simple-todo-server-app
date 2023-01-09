@@ -21,7 +21,7 @@ jobs:
           - path: ./target/release/rust_todo_server
           - path: ./target/release/rust_todo_server.exe
             os: windows-latest
-    runs-on: ${{ matrix.os-latest }}
+    runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions-rs/cargo@v1
